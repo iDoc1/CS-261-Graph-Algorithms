@@ -4,6 +4,8 @@
 # Description: My implementation of an undirected, unweighted graph with no
 #              loops and no duplicate edges
 
+from collections import deque
+
 
 class UndirectedGraph:
     """
@@ -163,14 +165,41 @@ class UndirectedGraph:
         Return list of vertices visited during DFS search
         Vertices are picked in alphabetical order
         """
-       
+
+        # Check if given start vertex is in graph
+        if v_start not in self.adj_list:
+            return []  # Empty list
+
+        # Initialize stack and result list for DFS traversal
+        stack = deque()
+        visited = []
+        stack.append(v_start)
+
+        # Perform traversal and record each vertex visited
+        while len(stack) > 0:
+            curr_vertex = stack.pop()  # Pop vertex from top
+
+            # Add vertex to visited list
+            if curr_vertex not in visited:
+                visited.append(curr_vertex)
+
+                # Check if end vertex found
+                if curr_vertex == v_end:
+                    return visited
+
+                # Push each adjacent vertex to stack in reverse lexicographical order
+                self.adj_list[curr_vertex].sort(reverse=True)
+                for vertex in self.adj_list[curr_vertex]:
+                    stack.append(vertex)
+
+        return visited
 
     def bfs(self, v_start, v_end=None) -> []:
         """
         Return list of vertices visited during BFS search
         Vertices are picked in alphabetical order
         """
-        
+        return
 
     def count_connected_components(self):
         """
@@ -233,19 +262,19 @@ if __name__ == '__main__':
         print(list(path), g.is_valid_path(list(path)))
 
 
-    # print("\nPDF - method dfs() and bfs() example 1")
-    # print("--------------------------------------")
-    # edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
-    # g = UndirectedGraph(edges)
-    # test_cases = 'ABCDEGH'
-    # for case in test_cases:
-    #     print(f'{case} DFS:{g.dfs(case)} BFS:{g.bfs(case)}')
-    # print('-----')
-    # for i in range(1, len(test_cases)):
-    #     v1, v2 = test_cases[i], test_cases[-1 - i]
-    #     print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
-    #
-    #
+    print("\nPDF - method dfs() and bfs() example 1")
+    print("--------------------------------------")
+    edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
+    g = UndirectedGraph(edges)
+    test_cases = 'ABCDEGH'
+    for case in test_cases:
+        print(f'{case} DFS:{g.dfs(case)} BFS:{g.bfs(case)}')
+    print('-----')
+    for i in range(1, len(test_cases)):
+        v1, v2 = test_cases[i], test_cases[-1 - i]
+        print(f'{v1}-{v2} DFS:{g.dfs(v1, v2)} BFS:{g.bfs(v1, v2)}')
+
+
     # print("\nPDF - method count_connected_components() example 1")
     # print("---------------------------------------------------")
     # edges = ['AE', 'AC', 'BE', 'CE', 'CD', 'CB', 'BD', 'ED', 'BH', 'QG', 'FG']
