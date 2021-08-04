@@ -50,7 +50,7 @@ class UndirectedGraph:
 
         # Add a vertex with no adjacent vertices
         self.adj_list[v] = []  # Initialize to empty list
-        
+
     def add_edge(self, u: str, v: str) -> None:
         """
         Adds the given edge to the graph. If either vertex does not exist
@@ -190,7 +190,7 @@ class UndirectedGraph:
                 # Push each adjacent vertex to stack in reverse lexicographical order
                 self.adj_list[curr_vertex].sort(reverse=True)
                 for vertex in self.adj_list[curr_vertex]:
-                        stack.append(vertex)
+                    stack.append(vertex)
 
         return visited
 
@@ -240,7 +240,6 @@ class UndirectedGraph:
 
             # Check if vertex has been visited
             if vertex not in visited:
-
                 # Perform BFS starting from this vertex
                 component = self.bfs(vertex)
 
@@ -255,7 +254,7 @@ class UndirectedGraph:
         Returns True if graph contains at least one cycle, False otherwise
         """
 
-        # Iterate over each vertex in graph
+        # Iterate through each vertex in graph and test for cycles
         for vertex in self.adj_list:
 
             # Check if a cycle can be formed starting from vertex
@@ -266,25 +265,52 @@ class UndirectedGraph:
 
     def _has_cycle_dfs(self, v_start):
         """
-        TODO: Description
+        Returns True if a cycle can be formed starting from the given vertex and
+        False otherwise. This method relies on my observation that if the last two
+        elements in the stack, or the first and last elements, are the same then
+        there is a cycle present due to two different paths connecting to the same
+        vertex.
         """
         stack = deque()
         visited = []
         stack.append(v_start)
 
+        # Perform DFS traversal
         while len(stack) > 0:
             curr_vertex = stack.pop()
 
+            # Check if current vertex has been visited
             if curr_vertex not in visited:
                 visited.append(curr_vertex)
 
+                # Iterate through each adjacent vertex
                 for vertex in self.adj_list[curr_vertex]:
                     if vertex not in visited:
                         stack.append(vertex)
 
-                    stack_len = len(stack)
-                    if len(stack) > 1 and stack[stack_len - 1] == stack[stack_len - 2]:
+                    # Check if last two, or first and last, elements in stack are equal
+                    # stack_len = len(stack)
+                    # if len(stack) > 1 and (stack[stack_len - 1] == stack[stack_len - 2]
+                    #                        or stack[0] == stack[stack_len - 1]):
+                    #     return True
+                    if self._has_duplicates(stack):
                         return True
+
+        return False
+
+    def _has_duplicates(self, stack):
+        stack_copy = []
+        for element in stack:
+            stack_copy.append(element)
+
+        index1 = 0
+        index2 = 1
+        while index2 < len(stack_copy):
+            if stack_copy[index1] == stack_copy[index2]:
+                return True
+
+            index1 += 1
+            index2 += 2
 
         return False
 
@@ -381,13 +407,7 @@ if __name__ == '__main__':
         g.add_edge(u, v) if command == 'add' else g.remove_edge(u, v)
         print('{:<10}'.format(case), g.has_cycle())
 
-
-    edges = ['AB', 'BC', 'CD', 'DA']
-    g = UndirectedGraph(edges)
-    print(g)
-    print(g.has_cycle())
-
-    edges = ['AB', 'BC', 'CD']
+    edges = ['JE', 'JG', 'EF', 'AE', 'AI', 'AB', 'BF', 'FC']
     g = UndirectedGraph(edges)
     print(g)
     print(g.has_cycle())
