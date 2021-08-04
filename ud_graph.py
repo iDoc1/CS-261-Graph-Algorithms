@@ -289,32 +289,15 @@ class UndirectedGraph:
                         stack.append(vertex)
 
                     # Check if last two, or first and last, elements in stack are equal
-                    # stack_len = len(stack)
-                    # if len(stack) > 1 and (stack[stack_len - 1] == stack[stack_len - 2]
-                    #                        or stack[0] == stack[stack_len - 1]):
-                    #     return True
-                    if self._has_duplicates(stack):
+                    stack_len = len(stack)
+                    if len(stack) > 1 and (stack[stack_len - 1] == stack[stack_len - 2]
+                                           or stack[0] == stack[stack_len - 1]):
                         return True
 
         return False
 
-    def _has_duplicates(self, stack):
-        stack_copy = []
-        for element in stack:
-            stack_copy.append(element)
 
-        index1 = 0
-        index2 = 1
-        while index2 < len(stack_copy):
-            if stack_copy[index1] == stack_copy[index2]:
-                return True
-
-            index1 += 1
-            index2 += 2
-
-        return False
-
-
+# Test cases below
 if __name__ == '__main__':
     #
     # print("\nPDF - method add_vertex() / add_edge example 1")
@@ -406,8 +389,3 @@ if __name__ == '__main__':
         u, v = edge
         g.add_edge(u, v) if command == 'add' else g.remove_edge(u, v)
         print('{:<10}'.format(case), g.has_cycle())
-
-    edges = ['JE', 'JG', 'EF', 'AE', 'AI', 'AB', 'BF', 'FC']
-    g = UndirectedGraph(edges)
-    print(g)
-    print(g.has_cycle())
