@@ -318,48 +318,48 @@ class DirectedGraph:
 
 if __name__ == '__main__':
 
-    # print("\nPDF - method add_vertex() / add_edge example 1")
-    # print("----------------------------------------------")
-    # g = DirectedGraph()
-    # print(g)
-    # for _ in range(5):
-    #     g.add_vertex()
-    # print(g)
-    #
-    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    # for src, dst, weight in edges:
-    #     g.add_edge(src, dst, weight)
-    # print(g)
-    #
-    # print("\nPDF - method get_edges() example 1")
-    # print("----------------------------------")
-    # g = DirectedGraph()
-    # print(g.get_edges(), g.get_vertices(), sep='\n')
-    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    # g = DirectedGraph(edges)
-    # print(g.get_edges(), g.get_vertices(), sep='\n')
-    #
-    #
-    # print("\nPDF - method is_valid_path() example 1")
-    # print("--------------------------------------")
-    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    # g = DirectedGraph(edges)
-    # test_cases = [[0, 1, 4, 3], [1, 3, 2, 1], [0, 4], [4, 0], [], [2]]
-    # for path in test_cases:
-    #     print(path, g.is_valid_path(path))
-    #
-    #
-    # print("\nPDF - method dfs() and bfs() example 1")
-    # print("--------------------------------------")
-    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    # g = DirectedGraph(edges)
-    # for start in range(5):
-    #     print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
-    #
+    print("\nPDF - method add_vertex() / add_edge example 1")
+    print("----------------------------------------------")
+    g = DirectedGraph()
+    print(g)
+    for _ in range(5):
+        g.add_vertex()
+    print(g)
+
+    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    for src, dst, weight in edges:
+        g.add_edge(src, dst, weight)
+    print(g)
+
+    print("\nPDF - method get_edges() example 1")
+    print("----------------------------------")
+    g = DirectedGraph()
+    print(g.get_edges(), g.get_vertices(), sep='\n')
+    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    g = DirectedGraph(edges)
+    print(g.get_edges(), g.get_vertices(), sep='\n')
+
+
+    print("\nPDF - method is_valid_path() example 1")
+    print("--------------------------------------")
+    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    g = DirectedGraph(edges)
+    test_cases = [[0, 1, 4, 3], [1, 3, 2, 1], [0, 4], [4, 0], [], [2]]
+    for path in test_cases:
+        print(path, g.is_valid_path(path))
+
+
+    print("\nPDF - method dfs() and bfs() example 1")
+    print("--------------------------------------")
+    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    g = DirectedGraph(edges)
+    for start in range(5):
+        print(f'{start} DFS:{g.dfs(start)} BFS:{g.bfs(start)}')
+
 
     print("\nPDF - method has_cycle() example 1")
     print("----------------------------------")
@@ -380,20 +380,17 @@ if __name__ == '__main__':
     print(g.get_edges(), g.has_cycle(), sep='\n')
     print('\n', g)
 
-    #
-    # print("\nPDF - dijkstra() example 1")
-    # print("--------------------------")
-    # edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
-    #          (3, 1, 5), (2, 1, 23), (3, 2, 7)]
-    # g = DirectedGraph(edges)
-    # for i in range(5):
-    #     print(f'DIJKSTRA {i} {g.dijkstra(i)}')
-    # g.remove_edge(4, 3)
-    # print('\n', g)
-    # for i in range(5):
-    #     print(f'DIJKSTRA {i} {g.dijkstra(i)}')
 
-    # edges = [(0, 1, 10), (1, 4, 15), (2, 1, 23), (2, 3, 1), (4, 3, 1)]
-    # g = DirectedGraph(edges)
-    # print(g)
-    # print(g.has_cycle_bfs())
+    print("\nPDF - dijkstra() example 1")
+    print("--------------------------")
+    edges = [(0, 1, 10), (4, 0, 12), (1, 4, 15), (4, 3, 3),
+             (3, 1, 5), (2, 1, 23), (3, 2, 7)]
+    g = DirectedGraph(edges)
+    for i in range(5):
+        print(f'DIJKSTRA {i} {g.dijkstra(i)}')
+    g.remove_edge(4, 3)
+    print('\n', g)
+    for i in range(5):
+        print(f'DIJKSTRA {i} {g.dijkstra(i)}')
+
+
