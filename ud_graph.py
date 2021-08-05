@@ -2,7 +2,8 @@
 # Author: Ian Docherty
 # Assignment: Assignment 6
 # Description: My implementation of an undirected, unweighted graph with no
-#              loops and no duplicate edges
+#              loops and no duplicate edges. The graph is represented using
+#              an adjacency list.
 
 from collections import deque
 
