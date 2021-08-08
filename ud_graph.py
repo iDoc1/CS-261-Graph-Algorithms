@@ -241,6 +241,7 @@ class UndirectedGraph:
 
             # Check if vertex has been visited
             if vertex not in visited:
+
                 # Perform BFS starting from this vertex
                 component = self.bfs(vertex)
 
